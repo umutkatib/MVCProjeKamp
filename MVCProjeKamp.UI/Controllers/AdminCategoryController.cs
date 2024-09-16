@@ -43,5 +43,26 @@ namespace MVCProjeKamp.UI.Controllers
             }
             return View();
         }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = cm.GetByID(id);
+            cm.CategoryRemoveBL(category);
+            return RedirectToAction("Index"); 
+        }
+
+        [HttpGet]
+        public IActionResult EditCategory(int id)
+        {
+            var category = cm.GetByID(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(Category category)
+        {
+            cm.CategoryUpdateBL(category);
+            return RedirectToAction("Index");
+        }
     }
 }
