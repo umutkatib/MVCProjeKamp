@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{FE4E242C-1FE8-4524-B6C2-81F8F892BBEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCProjeKamp.UI", "MVCProjeKamp.UI\MVCProjeKamp.UI.csproj", "{A3DE9B5A-ADFD-47BB-A379-3F097E3C14EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCProjeKamp.UI", "MVCProjeKamp.UI\MVCProjeKamp.UI.csproj", "{A3DE9B5A-ADFD-47BB-A379-3F097E3C14EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B54267E-9BAF-496F-B612-E28F9BE08C38}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

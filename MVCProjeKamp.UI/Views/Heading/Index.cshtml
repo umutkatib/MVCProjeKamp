@@ -1,0 +1,32 @@
+﻿@model List<EntityLayer.Concrete.Heading>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Kategori</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.HeadingID</td>
+            <td>@item.HeadingName</td>
+            <td>@item.Category.CategoryName</td>
+            <td>@item.HeadingDate</td>
+            <td><a href="#" class="btn btn-danger">Sil</a></td>
+            <td><a href="#" class="btn btn-info">Düzenle</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Heading/AddHeading" class="btn btn-info">Yeni Başlık Ekle</a>
