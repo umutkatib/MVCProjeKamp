@@ -17,5 +17,6 @@ namespace DataAccessLayer.Abstract
         void Delete(T p);
         List<T> List(Expression<Func<T, bool>> filter);
         List<T> ListWithInclude(params Expression<Func<T, object>>[] includes);
+        List<T> ListWithInclude(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes);
     }
 }

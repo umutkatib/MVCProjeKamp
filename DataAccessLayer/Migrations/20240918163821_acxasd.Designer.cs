@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240918163821_acxasd")]
+    partial class acxasd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,9 +110,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("ContentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("ContentStatus")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ContentValue")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
@@ -146,9 +145,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("HeadingName")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
-
-                    b.Property<bool>("HeadingStatus")
-                        .HasColumnType("bit");
 
                     b.Property<int>("WriterID")
                         .HasColumnType("int");
@@ -188,9 +184,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("WriterPassword")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("WriterStatus")
-                        .HasColumnType("bit");
 
                     b.Property<string>("WriterSurname")
                         .HasMaxLength(40)

@@ -36,12 +36,13 @@ namespace MVCProjeKamp.UI.Controllers
 
             if (validationResult.IsValid)
             {
+                p.CategoryStatus = true;
                 cm.CategoryAddBL(p);
-            return RedirectToAction("GetCategoryList");
+                return RedirectToAction("GetCategoryList");
             }
             else
             {
-                foreach(var item in validationResult.Errors)
+                foreach (var item in validationResult.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }

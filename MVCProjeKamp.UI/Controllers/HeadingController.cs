@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using X.PagedList.Extensions;
 
 namespace MVCProjeKamp.UI.Controllers
 {
@@ -14,10 +15,10 @@ namespace MVCProjeKamp.UI.Controllers
         HeadingManager hm = new HeadingManager(new EFHeadingDal());
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         WriterManager wm = new WriterManager(new EFWriterDal());
-        public IActionResult Index()
+
+        public IActionResult Index(int page = 1)
         {
-            var headings = hm.GetListWithInclude();
-            return View(headings);
+            return View(hm.GetListWithInclude().ToPagedList(page, 5));
         }
 
         [HttpGet]
@@ -45,7 +46,39 @@ namespace MVCProjeKamp.UI.Controllers
         public IActionResult AddHeading(Heading p)
         {
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.HeadingStatus = true;
             hm.HeadingAdd(p);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditHeading(int id)
+        {
+            List<SelectListItem> valueCategory = (from x in cm.GetList()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.CategoryName,
+                                                      Value = x.CategoryID.ToString()
+                                                  }).ToList();
+            ViewBag.ValueCategory = valueCategory;
+
+            var heading = hm.GetByID(id);
+            return View(heading);
+        }
+
+        [HttpPost]
+        public IActionResult EditHeading(Heading p)
+        {
+            p.HeadingStatus = true;
+            hm.HeadingUpdate(p);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteHeading(int id)
+        {
+            var heading = hm.GetByID(id);
+            heading.HeadingStatus = false;
+            hm.HeadingRemove(heading);
             return RedirectToAction("Index");
         }
     }

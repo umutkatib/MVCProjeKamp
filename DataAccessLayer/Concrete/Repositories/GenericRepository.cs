@@ -63,6 +63,23 @@ namespace DataAccessLayer.Concrete.Repositories
             return query.ToList();
         }
 
+        public List<T> ListWithInclude(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _object;
+
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return query.ToList();
+        }
+
         public void Update(T p)
         {
             var updatedEntity = context.Entry(p);

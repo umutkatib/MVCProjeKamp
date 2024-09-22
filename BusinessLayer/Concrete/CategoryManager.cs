@@ -21,16 +21,19 @@ namespace BusinessLayer.Concrete
 
         public void CategoryAddBL(Category category)
         {
+            category.CategoryStatus = true;
             _categorydal.Insert(category);
         }
 
         public void CategoryRemoveBL(Category category)
         {
-            _categorydal.Delete(category);
+            category.CategoryStatus = false;
+            _categorydal.Update(category);
         }
 
         public void CategoryUpdateBL(Category category)
         {
+            category.CategoryStatus = true;
             _categorydal.Update(category);
         }
 

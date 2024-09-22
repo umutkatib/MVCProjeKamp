@@ -30,7 +30,7 @@ namespace BusinessLayer.Concrete
 
         public List<Heading> GetListWithInclude()
         {
-            return _headingdal.ListWithInclude(x => x.Category);
+            return _headingdal.ListWithInclude(z => z.HeadingStatus == true,x => x.Category, y => y.Writer);
         }
 
         public void HeadingAdd(Heading heading)
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public void HeadingRemove(Heading heading)
         {
-            _headingdal.Delete(heading);
+            _headingdal.Update(heading);
         }
 
         public void HeadingUpdate(Heading heading)
